@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import WelcomeToMonsters from 'home/src/WelcomeToMonsters.tsx'
+import WelcomeToDragons from 'home/src/WelcomeToDragons.tsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <WelcomeToMonsters />
+    <WelcomeToDragons />
   </React.StrictMode>,
 )

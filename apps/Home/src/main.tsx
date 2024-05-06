@@ -1,10 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import WelcomeToMonsters from 'home/src/WelcomeToMonsters.tsx'
+// import WelcomeToHome from './WelcomeToHome.tsx'
 import './index.css'
+import Autoban from './Autoban.tsx'
+
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <WelcomeToMonsters />
+    <Autoban />
   </React.StrictMode>,
 )
