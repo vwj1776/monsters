@@ -12,6 +12,12 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "live": {
+      "dependsOn": ["^live"],
+      "dotEnv": [".env"],
+      "cache": false,
+      "persistent": true
     }
   }
 }
