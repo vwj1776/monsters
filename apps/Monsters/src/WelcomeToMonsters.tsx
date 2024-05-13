@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import reactLogo from '../../Monsters/src/assets/react.svg'
+import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import '../../Monsters/src/App.css'
-import 'monsters/src/index.css'
+import './App.css'
+import './index.css'
 import {Link} from "react-router-dom";
 
 function WelcomeToMonsters() {

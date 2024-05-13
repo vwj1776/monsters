@@ -6,6 +6,8 @@ import Autoban from './Autoban.tsx'
 
 
 
+
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Autoban />
