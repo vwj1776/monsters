@@ -1,0 +1,8 @@
+dragonsView tsx
+dragon Type
+--> separate route in dragon looks like autoban. not a browser on module federation. remove
+      exposes: {
+        './WelcomeToDragons': './src/WelcomeToDragons',
+      }, and make it be handles in the new routing file
+add that to autoban
+add a /* to route paths in autoban
