@@ -3,39 +3,49 @@ import './index.css'
 import SubNavigation from "@churchofjesuschrist/eden-sub-navigation";
 import WorkforceFooter from "@churchofjesuschrist/eden-workforce-footer";
 import Card from "@churchofjesuschrist/eden-card";
-import {DragonType} from "./dragonType.tsx";
+import {MonsterType} from "./monsterType.tsx";
 
-function AllDragons() {
-    const dragons: DragonType[] = [
+function AllMonsters() {
+    const monsters: MonsterType[] = [
         {
-            name: 'Puff',
-            type: 'Nice :)',
-            powerLevel: 3,
-            image: 'https://dk.pinterest.com/pin/370632244304904603/'
+            name: 'Grendel',
+            type: 'Troll',
+            powerLevel: 9,
+            evilLevel: 10,
+            haveIHadANightmareAboutThisMonster: false,
+            image: 'https://example.com/grendel.jpg'
         },
         {
-            name: 'Smaug',
-            type: 'Fire',
-            powerLevel: 10,
-            image: 'https://example.com/smaug.jpg'
-        },
-        {
-            name: 'Draco',
-            type: 'Ice',
-            powerLevel: 7,
-            image: 'https://example.com/draco.jpg'
-        },
-        {
-            name: 'Toothless',
-            type: 'Night Fury',
+            name: 'Grendel\'s Mother',
+            type: 'Water Demon',
             powerLevel: 8,
-            image: 'https://example.com/toothless.jpg'
+            evilLevel: 9,
+            haveIHadANightmareAboutThisMonster: false,
+            image: 'https://example.com/grendels-mother.jpg'
         },
         {
-            name: 'Falkor',
-            type: 'Luckdragon',
-            powerLevel: 5,
-            image: 'https://example.com/falkor.jpg'
+            name: 'Bear',
+            type: 'Grizzly',
+            powerLevel: 10,
+            evilLevel: 5,
+            haveIHadANightmareAboutThisMonster: true,
+            image: 'https://example.com/bear.jpg'
+        },
+        {
+            name: 'Chimera',
+            type: 'Hybrid',
+            powerLevel: 7,
+            evilLevel: 7,
+            haveIHadANightmareAboutThisMonster: false,
+            image: 'https://example.com/chimera.jpg'
+        },
+        {
+            name: 'Hydra',
+            type: 'Multi-headed Serpent',
+            powerLevel: 8,
+            evilLevel: 8,
+            haveIHadANightmareAboutThisMonster: true,
+            image: 'https://example.com/hydra.jpg'
         }
     ];
     return (
@@ -78,13 +88,15 @@ function AllDragons() {
                     }}
                 />
                 <div className="min-h-screen flex flex-col bg-amber-400">
-                    {dragons.map((dragon, index) => (
+                    {monsters.map((monster, index) => (
                         <Card key={index} depth="raised" className="m-4 p-4">
-                            <h1>Dragon Details</h1>
-                            <p>Name: {dragon.name}</p>
-                            <p>Type: {dragon.type}</p>
-                            <p>Power Level: {dragon.powerLevel}</p>
-                            <img src={dragon.image} alt={dragon.name}/>
+                            <h1>Monster Details</h1>
+                            <p>Name: {monster.name}</p>
+                            <p>Type: {monster.type}</p>
+                            <p>Power Level: {monster.powerLevel}</p>
+                            <p>Evil Level: {monster.evilLevel}</p>
+                            <p>haveIHadANightmareAboutThisMonster: {monster.haveIHadANightmareAboutThisMonster ? 'Yes' : 'No'}</p>
+                            <img src={monster.image} alt={monster.name} />
                         </Card>
                     ))}
                 </div>
@@ -94,4 +106,4 @@ function AllDragons() {
     )
 }
 
-export default AllDragons
+export default AllMonsters

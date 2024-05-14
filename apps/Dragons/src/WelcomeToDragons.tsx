@@ -19,11 +19,31 @@ function WelcomeToDragons() {
               <SubNavigation
                   items={[
                       {
-                          href: 'http://localhost:5173/Dragons',
+                          items: [
+                              {
+                                  current: '[Circular]',
+                                  href: 'http://localhost:5173/Dragons',
+                                  text: 'WelcomeToDragons'
+                              },
+                              {
+                                  href: 'http://localhost:5173/Dragons/allDragons',
+                                  text: 'DragonsDetailPage'
+                              }
+                          ],
                           text: 'Dragons'
                       },
                       {
-                          href: 'http://localhost:5173/Monsters',
+                          items: [
+                              {
+                                  current: '[Circular]',
+                                  href: 'http://localhost:5173/Monsters',
+                                  text: 'WelcomeToMonsters'
+                              },
+                              {
+                                  href: 'http://localhost:5173/Monsters/allMonsters',
+                                  text: 'MonstersDetailPage'
+                              }
+                          ],
                           text: 'Monsters'
                       }
                   ]}

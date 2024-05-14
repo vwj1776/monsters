@@ -11,7 +11,7 @@ export default defineConfig({
       filename: 'remoteEntry.js',
       // Modules to expose
       exposes: {
-        './WelcomeToMonsters': './src/WelcomeToMonsters',
+        './MonsterAutoban': './src/MonsterAutoban',
       },
       shared: ['react', 'react-dom', 'react-router-dom']
     }),
