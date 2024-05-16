@@ -6,3 +6,8 @@ dragon Type
       }, and make it be handles in the new routing file
 add that to autoban
 add a /* to route paths in autoban
+
+Add an Eden Button to the card that uses react router to route to a page that displays the full details of the dragon
+in not a card format and has a back button Eden Icon at the top.
+NOTE: For the routing to work in the host, and locally you will have to have the export of your
+module federated app be different from a wrapper that includes the Browser Router (please look at Project Amulek for examples)

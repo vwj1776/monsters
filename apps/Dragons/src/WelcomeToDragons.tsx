@@ -5,7 +5,7 @@ import SubNavigation from "@churchofjesuschrist/eden-sub-navigation";
 import WorkforceFooter from "@churchofjesuschrist/eden-workforce-footer";
 import Card from "@churchofjesuschrist/eden-card";
 import { DragonType } from "./dragonType.tsx";
-
+import { Primary } from "@churchofjesuschrist/eden-buttons";
 function WelcomeToDragons() {
   const dragon0: DragonType = {
       name: 'Puff',
@@ -62,6 +62,15 @@ function WelcomeToDragons() {
                       <p>Power Level: {dragon0.powerLevel}</p>
                       <img src={dragon0.image} />
                   </Card>
+                  <Primary
+                      href={{
+                          'http://localhost:5173/Dragons/allDragons': 'http://localhost:5173/Dragons/allDragons'
+                      }}
+                  >
+
+                      To All Dragons
+                  </Primary>
+
               </div>
 
               <WorkforceFooter />

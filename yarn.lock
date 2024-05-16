@@ -259,6 +259,15 @@
   dependencies:
     prop-types "15.8.1"
 
+"@churchofjesuschrist/eden-buttons@^14.0.1":
+  version "14.0.1"
+  resolved "https://icsrepo.churchofjesuschrist.org/artifactory/api/npm/npm-ics/@churchofjesuschrist/eden-buttons/-/@churchofjesuschrist/eden-buttons-14.0.1.tgz#bbdf48689cf883b827027de11caf7c3ea083ae44"
+  integrity sha512-V+RTH1S5Y7u3A+7HIqv5bJmzmEa69BYVUeFFXAJG3p0FQDAAOtuzpLZFtVU9xNlk80Y5SHaMNEM9bP0Fz1cfGA==
+  dependencies:
+    "@churchofjesuschrist/eden-style-constants" "10.0.1"
+    "@churchofjesuschrist/eden-utilities" "0.5.2"
+    prop-types "15.8.1"
+
 "@churchofjesuschrist/eden-callout@9.3.3":
   version "9.3.3"
   resolved "https://icsrepo.churchofjesuschrist.org/artifactory/api/npm/npm-ics/@churchofjesuschrist/eden-callout/-/@churchofjesuschrist/eden-callout-9.3.3.tgz#fbefc2aca90eb98028703737ea054bdfe743a8e9"
@@ -319,7 +328,7 @@
     "@churchofjesuschrist/eden-styled-helpers" "8.0.18"
     prop-types "15.8.1"
 
-"@churchofjesuschrist/eden-icons@12.0.6":
+"@churchofjesuschrist/eden-icons@12.0.6", "@churchofjesuschrist/eden-icons@^12.0.6":
   version "12.0.6"
   resolved "https://icsrepo.churchofjesuschrist.org/artifactory/api/npm/npm-ics/@churchofjesuschrist/eden-icons/-/@churchofjesuschrist/eden-icons-12.0.6.tgz#30a44c011b4297700eebcbd57b81de3aa9839df0"
   integrity sha512-CLaJySaQVtOwbJGTMlBnNMFiJULc6FIrfRzMsGBX/YyO3naahpS8ItAXQVHz1STm2nD2FG2FS5HjBmzew0CcyQ==

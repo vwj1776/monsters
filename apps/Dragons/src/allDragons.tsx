@@ -4,6 +4,8 @@ import SubNavigation from "@churchofjesuschrist/eden-sub-navigation";
 import WorkforceFooter from "@churchofjesuschrist/eden-workforce-footer";
 import Card from "@churchofjesuschrist/eden-card";
 import {DragonType} from "./dragonType.tsx";
+import { ArrowBack } from "@churchofjesuschrist/eden-icons";
+import { Primary } from "@churchofjesuschrist/eden-buttons";
 
 function AllDragons() {
     const dragons: DragonType[] = [
@@ -87,7 +89,17 @@ function AllDragons() {
                             <img src={dragon.image} alt={dragon.name}/>
                         </Card>
                     ))}
+
+                    <Primary
+                        href={{
+                            href: 'http://localhost:5173/Dragons'
+                        }}
+                    >
+                        <ArrowBack />
+                        Button text
+                    </Primary>
                 </div>
+
                 <WorkforceFooter/>
             </div>
         </>
