@@ -27,14 +27,20 @@
     "packages/*"
   ],
   "dependencies": {
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
+    "@churchofjesuschrist/eden-buttons": "^14.0.1",
+    "@churchofjesuschrist/eden-card": "^7.1.7",
+    "@churchofjesuschrist/eden-fonts": "^3.0.1",
+    "@churchofjesuschrist/eden-icons": "^12.0.6",
+    "@churchofjesuschrist/eden-sub-navigation": "^6.1.9",
+    "@churchofjesuschrist/eden-workforce-footer": "^2.1.12",
     "concurrently": "^8.2.2",
-    "cores": "^0.8.5",
-    "cors": "^2.8.5",
+    "i": "^0.3.7",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
+    "react": "18",
+    "react-dom": "18",
     "react-router-dom": "^6.23.0",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "styled-components": "5"
   }
 }

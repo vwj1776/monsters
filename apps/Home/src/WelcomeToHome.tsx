@@ -1,38 +1,58 @@
 import {useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
-import {Link} from "react-router-dom";
+import './index.css'
+import SubNavigation from "@churchofjesuschrist/eden-sub-navigation";
+import WorkforceFooter from "@churchofjesuschrist/eden-workforce-footer";
 
 function WelcomeToHome() {
     const [count, setCount] = useState(0);
-
-
     return (
         <>
+            <SubNavigation
+                items={[
+                    {
+                        items: [
+                            {
+                                current: location.pathname ==='/Dragons',
+                                href: 'http://localhost:5173/Dragons',
+                                text: 'WelcomeToDragons'
+                            },
+                            {
+                                href: 'http://localhost:5173/Dragons/allDragons',
+                                text: 'DragonsDetailPage'
+                            }
+                        ],
+                        text: 'Dragons'
+                    },
+                    {
+                        items: [
+                            {
+                                current: location.pathname ==='/Monsters',
+                                href: 'http://localhost:5173/Monsters',
+                                text: 'WelcomeToMonsters'
+                            },
+                            {
+                                href: 'http://localhost:5173/Monsters/allMonsters',
+                                text: 'MonstersDetailPage'
+                            }
+                        ],
+                        text: 'Monsters'
+                    }
+                ]}
+                title={{
+                    href: 'http://localhost:5173/',
+                    text: 'Home App'
+                }}
+            />
             <div className="bg-amber-400">
-                <div>
-                    <a href="https://vitejs.dev" target="_blank">
-                        <img src={viteLogo} className="logo" alt="Vite logo"/>
-                    </a>
-                    <a href="https://react.dev" target="_blank">
-                        <img src={reactLogo} className="logo react" alt="React logo"/>
-                    </a>
-                </div>
                 <p className="text-3xl font-bold underline">Welcome To Home</p>
                 <div>
                     <button onClick={() => setCount((count) => count + 1)} className="bg-red-700">
                         count is {count}
                     </button>
-                    <Link to="/Dragons" className="bg-red-700">
-                        Go to Dragons
-                    </Link>
-                    <Link to="/Monsters" className="bg-red-700">
-                        Go to Monsters
-                    </Link>
                 </div>
             </div>
+            <WorkforceFooter />
         </>
     )
 }
