@@ -1,38 +1,81 @@
 import { useState } from 'react'
-import reactLogo from '../../Dragons/src/assets/react.svg'
-import viteLogo from '/vite.svg'
-import '../../Dragons/src/App.css'
-import {Link} from "react-router-dom";
-
+import './App.css'
+import './index.css'
+import SubNavigation from "@churchofjesuschrist/eden-sub-navigation";
+import WorkforceFooter from "@churchofjesuschrist/eden-workforce-footer";
+import Card from "@churchofjesuschrist/eden-card";
+import { DragonType } from "./dragonType.tsx";
+import { Primary } from "@churchofjesuschrist/eden-buttons";
 function WelcomeToDragons() {
-  const [count, setCount] = useState(0)
-
+  const dragon0: DragonType = {
+      name: 'Puff',
+      type: 'Nice :)',
+      powerLevel: 3,
+      image: 'https://dk.pinterest.com/pin/370632244304904603/'
+  }
   return (
       <>
-          <div className="bg-amber-400">
-              <div>
-                  <a href="https://vitejs.dev" target="_blank">
-                      <img src={viteLogo} className="logo" alt="Vite logo"/>
-                  </a>
-                  <a href="https://react.dev" target="_blank">
-                      <img src={reactLogo} className="logo react" alt="React logo"/>
-                  </a>
+          <div>
+              <SubNavigation
+                  items={[
+                      {
+                          items: [
+                              {
+                                  current: '[Circular]',
+                                  href: 'http://localhost:5173/Dragons',
+                                  text: 'WelcomeToDragons'
+                              },
+                              {
+                                  href: 'http://localhost:5173/Dragons/allDragons',
+                                  text: 'DragonsDetailPage'
+                              }
+                          ],
+                          text: 'Dragons'
+                      },
+                      {
+                          items: [
+                              {
+                                  current: '[Circular]',
+                                  href: 'http://localhost:5173/Monsters',
+                                  text: 'WelcomeToMonsters'
+                              },
+                              {
+                                  href: 'http://localhost:5173/Monsters/allMonsters',
+                                  text: 'MonstersDetailPage'
+                              }
+                          ],
+                          text: 'Monsters'
+                      }
+                  ]}
+                  title={{
+                      href: 'http://localhost:5173/',
+                      text: 'Home App'
+                  }}
+              />
+              <div className="min-h-screen flex flex-col bg-amber-400">
+                  <p className="text-3xl font-bold underline">Welcome To Dragons</p>
+
+                  <Card depth="raised">
+                      <h1>Dragon Details</h1>
+                      <p>Name: {dragon0.name}</p>
+                      <p>Type: {dragon0.type}</p>
+                      <p>Power Level: {dragon0.powerLevel}</p>
+                      <img src={dragon0.image} />
+                  </Card>
+                  <Primary
+                      href={{
+                          'http://localhost:5173/Dragons/allDragons': 'http://localhost:5173/Dragons/allDragons'
+                      }}
+                  >
+
+                      To All Dragons
+                  </Primary>
+
               </div>
-              <p className="text-3xl font-bold underline">Welcome To Dragons</p>
-              <div>
-                  <button onClick={() => setCount((count) => count + 1)} className="bg-red-700">
-                      count is {count}
-                  </button>
-              </div>
-              <div>
-                  <Link to="/" className="bg-red-700">
-                      Go to Home
-                  </Link>
-                  <Link to="/Monsters" className="bg-red-700">
-                      Go to Monsters
-                  </Link>
-              </div>
+
+              <WorkforceFooter />
           </div>
+
       </>
   )
 }

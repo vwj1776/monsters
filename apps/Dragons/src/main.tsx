@@ -1,10 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import WelcomeToDragons from './WelcomeToDragons.tsx'
 import './index.css'
+import DragonAutoban from "./DragonAutoban.tsx";
+import {BrowserRouter} from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <WelcomeToDragons />
+      <BrowserRouter>
+          <DragonAutoban />
+      </BrowserRouter>
   </React.StrictMode>,
 )

@@ -11,7 +11,7 @@ export default defineConfig({
       filename: 'remoteEntry.js',
       // Modules to expose
       exposes: {
-        './WelcomeToDragons': './src/WelcomeToDragons',
+        './DragonAutoban': './src/DragonAutoban',
       },
       shared: ['react', 'react-dom', 'react-router-dom']
     }),
