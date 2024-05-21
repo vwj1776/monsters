@@ -1,0 +1,22 @@
+{
+  "name": "expressapps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only apps.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vwj1776/monsters.git"
+  },
+  "private": true,
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
