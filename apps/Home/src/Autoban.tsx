@@ -7,6 +7,7 @@ import { lazy } from "react";
 // Define your components
 import ModuleFederationWrapper from "../../ModuleFederationWrapper.tsx";
 
+
 const WelcomeToDragons = lazy(() => import('dragon_app/DragonAutoban'));
 const WelcomeToMonsters = lazy(() => import('monster_app/MonsterAutoban'));
 // Create your main component
