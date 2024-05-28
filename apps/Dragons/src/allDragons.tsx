@@ -49,11 +49,11 @@ function AllDragons() {
                             items: [
                                 {
                                     current: '[Circular]',
-                                    href: 'http://localhost:5173/Dragons',
+                                    href: 'http://localhost:5174/Dragons',
                                     text: 'WelcomeToDragons'
                                 },
                                 {
-                                    href: 'http://localhost:5173/Dragons/allDragons',
+                                    href: 'http://localhost:5174/Dragons/allDragons',
                                     text: 'DragonsDetailPage'
                                 }
                             ],
@@ -63,11 +63,11 @@ function AllDragons() {
                             items: [
                                 {
                                     current: '[Circular]',
-                                    href: 'http://localhost:5173/Monsters',
+                                    href: 'http://localhost:5174/Monsters',
                                     text: 'WelcomeToMonsters'
                                 },
                                 {
-                                    href: 'http://localhost:5173/Monsters/allMonsters',
+                                    href: 'http://localhost:5174/Monsters/allMonsters',
                                     text: 'MonstersDetailPage'
                                 }
                             ],
@@ -75,7 +75,7 @@ function AllDragons() {
                         }
                     ]}
                     title={{
-                        href: 'http://localhost:5173/',
+                        href: 'http://localhost:5174/',
                         text: 'Home App'
                     }}
                 />

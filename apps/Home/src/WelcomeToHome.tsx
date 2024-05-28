@@ -14,11 +14,11 @@ function WelcomeToHome() {
                         items: [
                             {
                                 current: location.pathname ==='/Dragons',
-                                href: 'http://localhost:5173/Dragons',
+                                href: 'http://localhost:5174/Dragons',
                                 text: 'WelcomeToDragons'
                             },
                             {
-                                href: 'http://localhost:5173/Dragons/allDragons',
+                                href: 'http://localhost:5174/Dragons/allDragons',
                                 text: 'DragonsDetailPage'
                             }
                         ],
@@ -28,11 +28,11 @@ function WelcomeToHome() {
                         items: [
                             {
                                 current: location.pathname ==='/Monsters',
-                                href: 'http://localhost:5173/Monsters',
+                                href: 'http://localhost:5174/Monsters',
                                 text: 'WelcomeToMonsters'
                             },
                             {
-                                href: 'http://localhost:5173/Monsters/allMonsters',
+                                href: 'http://localhost:5174/Monsters/allMonsters',
                                 text: 'MonstersDetailPage'
                             }
                         ],
@@ -40,7 +40,7 @@ function WelcomeToHome() {
                     }
                 ]}
                 title={{
-                    href: 'http://localhost:5173/',
+                    href: 'http://localhost:5174/',
                     text: 'Home App'
                 }}
             />

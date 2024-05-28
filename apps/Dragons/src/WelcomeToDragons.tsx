@@ -22,11 +22,11 @@ function WelcomeToDragons() {
                           items: [
                               {
                                   current: '[Circular]',
-                                  href: 'http://localhost:5173/Dragons',
+                                  href: 'http://localhost:5174/Dragons',
                                   text: 'WelcomeToDragons'
                               },
                               {
-                                  href: 'http://localhost:5173/Dragons/allDragons',
+                                  href: 'http://localhost:5174/Dragons/allDragons',
                                   text: 'DragonsDetailPage'
                               }
                           ],
@@ -36,11 +36,11 @@ function WelcomeToDragons() {
                           items: [
                               {
                                   current: '[Circular]',
-                                  href: 'http://localhost:5173/Monsters',
+                                  href: 'http://localhost:5174/Monsters',
                                   text: 'WelcomeToMonsters'
                               },
                               {
-                                  href: 'http://localhost:5173/Monsters/allMonsters',
+                                  href: 'http://localhost:5174/Monsters/allMonsters',
                                   text: 'MonstersDetailPage'
                               }
                           ],
@@ -48,7 +48,7 @@ function WelcomeToDragons() {
                       }
                   ]}
                   title={{
-                      href: 'http://localhost:5173/',
+                      href: 'http://localhost:5174/',
                       text: 'Home App'
                   }}
               />
@@ -62,14 +62,7 @@ function WelcomeToDragons() {
                       <p>Power Level: {dragon0.powerLevel}</p>
                       <img src={dragon0.image} />
                   </Card>
-                  <Primary
-                      href={{
-                          'http://localhost:5173/Dragons/allDragons': 'http://localhost:5173/Dragons/allDragons'
-                      }}
-                  >
 
-                      To All Dragons
-                  </Primary>
 
               </div>
 
