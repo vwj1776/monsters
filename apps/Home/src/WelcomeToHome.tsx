@@ -3,9 +3,15 @@ import './App.css'
 import './index.css'
 import SubNavigation from "@churchofjesuschrist/eden-sub-navigation";
 import WorkforceFooter from "@churchofjesuschrist/eden-workforce-footer";
-
+import { useLocation, useNavigate } from 'react-router-dom';
 function WelcomeToHome() {
     const [count, setCount] = useState(0);
+
+    const navigate = useNavigate();
+
+    const handleNavigate = (path) => {
+        navigate(path);
+    }
     return (
         <>
             <SubNavigation
@@ -14,11 +20,11 @@ function WelcomeToHome() {
                         items: [
                             {
                                 current: location.pathname ==='/Dragons',
-                                href: 'http://localhost:5174/Dragons',
+                                onClick: () => handleNavigate('/Dragons'),
                                 text: 'WelcomeToDragons'
                             },
                             {
-                                href: 'http://localhost:5174/Dragons/allDragons',
+                                onClick: () => handleNavigate('/Dragons/allDragons'),
                                 text: 'DragonsDetailPage'
                             }
                         ],
@@ -28,11 +34,11 @@ function WelcomeToHome() {
                         items: [
                             {
                                 current: location.pathname ==='/Monsters',
-                                href: 'http://localhost:5174/Monsters',
+                                onClick: () => handleNavigate('/Monsters'),
                                 text: 'WelcomeToMonsters'
                             },
                             {
-                                href: 'http://localhost:5174/Monsters/allMonsters',
+                                onClick: () => handleNavigate('/Monsters/allMonsters'),
                                 text: 'MonstersDetailPage'
                             }
                         ],

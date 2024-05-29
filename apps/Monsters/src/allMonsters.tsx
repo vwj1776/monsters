@@ -4,50 +4,51 @@ import SubNavigation from "@churchofjesuschrist/eden-sub-navigation";
 import WorkforceFooter from "@churchofjesuschrist/eden-workforce-footer";
 import Card from "@churchofjesuschrist/eden-card";
 import {MonsterType} from "./monsterType.tsx";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { To, useNavigate} from 'react-router-dom';
+
 
 function AllMonsters() {
-    const monsters: MonsterType[] = [
-        {
-            name: 'Grendel',
-            type: 'Troll',
-            powerLevel: 9,
-            evilLevel: 10,
-            haveIHadANightmareAboutThisMonster: false,
-            image: 'https://example.com/grendel.jpg'
-        },
-        {
-            name: 'Grendel\'s Mother',
-            type: 'Water Demon',
-            powerLevel: 8,
-            evilLevel: 9,
-            haveIHadANightmareAboutThisMonster: false,
-            image: 'https://example.com/grendels-mother.jpg'
-        },
-        {
-            name: 'Bear',
-            type: 'Grizzly',
-            powerLevel: 10,
-            evilLevel: 5,
-            haveIHadANightmareAboutThisMonster: true,
-            image: 'https://example.com/bear.jpg'
-        },
-        {
-            name: 'Chimera',
-            type: 'Hybrid',
-            powerLevel: 7,
-            evilLevel: 7,
-            haveIHadANightmareAboutThisMonster: false,
-            image: 'https://example.com/chimera.jpg'
-        },
-        {
-            name: 'Hydra',
-            type: 'Multi-headed Serpent',
-            powerLevel: 8,
-            evilLevel: 8,
-            haveIHadANightmareAboutThisMonster: true,
-            image: 'https://example.com/hydra.jpg'
-        }
-    ];
+
+    const navigate = useNavigate();
+
+    const handleNavigate = (path: To) => {
+        navigate(path);
+    }
+    const [monsters, setMonsters] = useState<MonsterType[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchMonsters = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/monsters/all');
+                console.log('response', response);
+
+                console.log('response.data', response.data );
+                setMonsters(response.data);
+                setLoading(false);
+
+            } catch (err) {
+                setError('Error fetching monsters you dumb dumb');
+                setLoading(false);
+            }
+        };
+
+        fetchMonsters();
+    }, []);
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>{error}</p>;
+    }
+
+    console.log('poop');
+    console.log(monsters); // Safely access
     return (
         <>
             <div>
@@ -57,11 +58,11 @@ function AllMonsters() {
                             items: [
                                 {
                                     current: '[Circular]',
-                                    href: 'http://localhost:5174/Dragons',
+                                    onClick: () => handleNavigate('/Dragons'),
                                     text: 'WelcomeToDragons'
                                 },
                                 {
-                                    href: 'http://localhost:5174/Dragons/allDragons',
+                                    onClick: () => handleNavigate('/Dragons/allDragons'),
                                     text: 'DragonsDetailPage'
                                 }
                             ],
@@ -71,11 +72,11 @@ function AllMonsters() {
                             items: [
                                 {
                                     current: '[Circular]',
-                                    href: 'http://localhost:5174/Monsters',
+                                    onClick: () => handleNavigate('/Monsters'),
                                     text: 'WelcomeToMonsters'
                                 },
                                 {
-                                    href: 'http://localhost:5174/Monsters/allMonsters',
+                                    onClick: () => handleNavigate('/Monsters/allMonsters'),
                                     text: 'MonstersDetailPage'
                                 }
                             ],
@@ -83,7 +84,7 @@ function AllMonsters() {
                         }
                     ]}
                     title={{
-                        href: 'http://localhost:5174/',
+                        onClick: () => handleNavigate('/'),
                         text: 'Home App'
                     }}
                 />
@@ -95,8 +96,8 @@ function AllMonsters() {
                             <p>Type: {monster.type}</p>
                             <p>Power Level: {monster.powerLevel}</p>
                             <p>Evil Level: {monster.evilLevel}</p>
-                            <p>haveIHadANightmareAboutThisMonster: {monster.haveIHadANightmareAboutThisMonster ? 'Yes' : 'No'}</p>
-                            <img src={monster.image} alt={monster.name} />
+                            <p>haveIHadANightmareAboutThisMonster: {monster.haveIEverHadANightmareAboutThisMonster ? 'Yes' : 'No'}</p>
+                            {/*<img src={monster.image} alt={monster.name} />*/}
                         </Card>
                     ))}
                 </div>

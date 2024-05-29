@@ -6,7 +6,18 @@ import WorkforceFooter from "@churchofjesuschrist/eden-workforce-footer";
 import Card from "@churchofjesuschrist/eden-card";
 import { DragonType } from "./dragonType.tsx";
 import { Primary } from "@churchofjesuschrist/eden-buttons";
+import { useLocation, useNavigate } from 'react-router-dom';
+
+
 function WelcomeToDragons() {
+
+    const navigate = useNavigate();
+
+    const handleNavigate = (path) => {
+        navigate(path);
+    }
+
+
   const dragon0: DragonType = {
       name: 'Puff',
       type: 'Nice :)',
@@ -22,11 +33,11 @@ function WelcomeToDragons() {
                           items: [
                               {
                                   current: '[Circular]',
-                                  href: 'http://localhost:5174/Dragons',
+                                  onClick: () => handleNavigate('/Dragons'),
                                   text: 'WelcomeToDragons'
                               },
                               {
-                                  href: 'http://localhost:5174/Dragons/allDragons',
+                                  onClick: () => handleNavigate('/Dragons/allDragons'),
                                   text: 'DragonsDetailPage'
                               }
                           ],
@@ -36,11 +47,11 @@ function WelcomeToDragons() {
                           items: [
                               {
                                   current: '[Circular]',
-                                  href: 'http://localhost:5174/Monsters',
+                                  onClick: () => handleNavigate('/Monsters'),
                                   text: 'WelcomeToMonsters'
                               },
                               {
-                                  href: 'http://localhost:5174/Monsters/allMonsters',
+                                  onClick: () => handleNavigate('/Monsters/allMonsters'),
                                   text: 'MonstersDetailPage'
                               }
                           ],
@@ -48,7 +59,7 @@ function WelcomeToDragons() {
                       }
                   ]}
                   title={{
-                      href: 'http://localhost:5174/',
+                      onClick: () => handleNavigate('/'),
                       text: 'Home App'
                   }}
               />

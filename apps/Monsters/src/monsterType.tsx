@@ -4,6 +4,6 @@ export interface MonsterType {
     type: string;
     powerLevel: number;
     evilLevel: number;
-    haveIHadANightmareAboutThisMonster: boolean;
+    haveIEverHadANightmareAboutThisMonster: boolean;
     image: string;
 }

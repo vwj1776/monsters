@@ -1,0 +1,4 @@
+1. monster host:  "dev:host": "turbo dev --filter=host",
+2. remotes:   "live:remotes": "dotenv -- turbo live --filter=./apps/* --filter=!host --concurrency=100",
+3. servers :  "dev:servers":dotenv -- turbo dev --filter=./app
+              s/*-server  --concurrency=100%",
