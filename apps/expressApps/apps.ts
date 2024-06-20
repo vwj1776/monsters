@@ -3,6 +3,9 @@ import cors from 'cors';
 import dragonsController from "./routes/dragonsController";
 import monstersController from "./routes/monstersController";
 import helmet from 'helmet';
+// import { DynamicsWebApi } from "dynamics-web-api";
+// import { getDynamicsWebApi
+// } from '@churchofjesuschrist/amulek-cumorah';
 const app = express()
 
 
@@ -15,12 +18,12 @@ app.use(cors());
 app.use(express.json());
 app.use(helmet());
 
-app.use(express.urlencoded({extended: true} ));
 app.use('/dragons', dragonsController);
 app.use('/monsters', monstersController);
 
-app.listen(port, host, () => {
-    console.log(`Now listening on host ${host} on port ${port}.`);
+
+app.listen(port, () => {
+    console.log(`Now listening on port ${port}.`);
 });
 
 export default app;

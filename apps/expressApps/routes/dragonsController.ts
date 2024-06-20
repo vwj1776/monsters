@@ -1,9 +1,18 @@
-import express, {NextFunction, Request, Response} from 'express';
+import express, {NextFunction, Request, response, Response} from 'express';
 import bodyParser from 'body-parser';
 // @ts-ignore
 import {DragonType} from "dragons/src/dragonType";
+// import { DynamicsWebApi } from "dynamics-web-api";
+import { autoFormatDataKeys, getDynamicsWebApi
+} from '@churchofjesuschrist/amulek-cumorah';
+import axios from "axios";
+
+const dynamicsWebApi = getDynamicsWebApi('misamulek-dev');
+
 const dragonsController = express();
 dragonsController.use(bodyParser.json());
+
+const collection =  'vincent_MonsterApp_dragons';
 
 dragonsController.get('/api/:dragonID',(req: Request, res: Response, next: NextFunction) => {
     let dragon; // const dragon: DragonType = res??
@@ -12,14 +21,34 @@ dragonsController.get('/api/:dragonID',(req: Request, res: Response, next: NextF
 });
 
 //get all
-dragonsController.get('/api/dragons',(req: Request, res: Response, next: NextFunction) => {
-    console.log(req.params);
-    const dragons: any[] = []; // const dragons: DragonType = []; res??
-    res.send(dragons);
+dragonsController.get('/all',async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        console.log("above await");
+        const response = await dynamicsWebApi.retrieve({
+            collection: 'new_dragons'
+        });
+        console.log("after await");
+        console.log(response);
+
+        const dragons = response.value;
+        console.log(dragons);
+        const formattedDragons = autoFormatDataKeys(dragons, 'new');
+        console.log("formatted dragons", formattedDragons);
+        res.send(formattedDragons);
+    } catch (error) {
+        console.error('Error retrieving dragons:', error);
+        next(error);
+    }
 });
 
-dragonsController.post('/api/post/:dragon',(req: Request, res: Response, next: NextFunction) => {
-    console.log(req.params);
+// dragonsController.post('/api/post/:dragon',(req: Request, res: Response, next: NextFunction) => {
+//     console.log(req.params);
+//     return res.sendStatus(200);
+//
+// });
+
+dragonsController.post('/api/post',(req: Request, res: Response, next: NextFunction) => {
+    console.log(req.body);
     return res.sendStatus(200);
 
 });

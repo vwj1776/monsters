@@ -6,104 +6,104 @@ import Card from "@churchofjesuschrist/eden-card";
 import {DragonType} from "./dragonType.tsx";
 import { ArrowBack } from "@churchofjesuschrist/eden-icons";
 import { Primary } from "@churchofjesuschrist/eden-buttons";
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import React, {useEffect, useState} from "react";
 
 function AllDragons() {
-    const dragons: DragonType[] = [
-        {
-            name: 'Puff',
-            type: 'Nice :)',
-            powerLevel: 3,
-            image: 'https://dk.pinterest.com/pin/370632244304904603/'
-        },
-        {
-            name: 'Smaug',
-            type: 'Fire',
-            powerLevel: 10,
-            image: 'https://example.com/smaug.jpg'
-        },
-        {
-            name: 'Draco',
-            type: 'Ice',
-            powerLevel: 7,
-            image: 'https://example.com/draco.jpg'
-        },
-        {
-            name: 'Toothless',
-            type: 'Night Fury',
-            powerLevel: 8,
-            image: 'https://example.com/toothless.jpg'
-        },
-        {
-            name: 'Falkor',
-            type: 'Luckdragon',
-            powerLevel: 5,
-            image: 'https://example.com/falkor.jpg'
+    const navigate = useNavigate();
+
+    const handleNavigate = (path) => {
+        navigate(path);
+    }
+
+    const [dragons, setDragons] = useState<DragonType[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    useEffect(() => {
+    const fetchDragons = async () => {
+        try {
+            const response = await axios.get('http://localhost:3000/dragons/all');
+            console.log('response', response);
+
+            console.log('response.data', response.data );
+            setDragons(response.data);
+            setLoading(false);
+
+        } catch (err) {
+            setError('Error fetching dragons you dumb dumb');
+            setLoading(false);
         }
-    ];
-    return (
-        <>
-            <div>
-                <SubNavigation
-                    items={[
-                        {
-                            items: [
-                                {
-                                    current: '[Circular]',
-                                    href: 'http://localhost:5174/Dragons',
-                                    text: 'WelcomeToDragons'
-                                },
-                                {
-                                    href: 'http://localhost:5174/Dragons/allDragons',
-                                    text: 'DragonsDetailPage'
-                                }
-                            ],
-                            text: 'Dragons'
-                        },
-                        {
-                            items: [
-                                {
-                                    current: '[Circular]',
-                                    href: 'http://localhost:5174/Monsters',
-                                    text: 'WelcomeToMonsters'
-                                },
-                                {
-                                    href: 'http://localhost:5174/Monsters/allMonsters',
-                                    text: 'MonstersDetailPage'
-                                }
-                            ],
-                            text: 'Monsters'
-                        }
-                    ]}
-                    title={{
-                        href: 'http://localhost:5174/',
-                        text: 'Home App'
-                    }}
-                />
-                <div className="min-h-screen flex flex-col bg-amber-400">
-                    {dragons.map((dragon, index) => (
-                        <Card key={index} depth="raised" className="m-4 p-4">
-                            <h1>Dragon Details</h1>
-                            <p>Name: {dragon.name}</p>
-                            <p>Type: {dragon.type}</p>
-                            <p>Power Level: {dragon.powerLevel}</p>
-                            <img src={dragon.image} alt={dragon.name}/>
-                        </Card>
-                    ))}
+    };
 
-                    <Primary
-                        href={{
-                            href: 'http://localhost:5173/Dragons'
-                        }}
-                    >
-                        <ArrowBack />
-                        Button text
-                    </Primary>
-                </div>
+    fetchDragons();
+    }, []);
 
-                <WorkforceFooter/>
+if (loading) {
+    return <p>Loading...</p>;
+}
+
+if (error) {
+    return <p>{error}</p>;
+}
+
+return (
+    <>
+        <div>
+            <SubNavigation
+                items={[
+                    {
+                        items: [
+                            {
+                                current: '[Circular]',
+                                onClick: () => handleNavigate('/Dragons'),
+                                text: 'WelcomeToDragons'
+                            },
+                            {
+                                onClick: () => handleNavigate('/Dragons/allDragons'),
+                                text: 'DragonsDetailPage'
+                            }
+                        ],
+                        text: 'Dragons'
+                    },
+                    {
+                        items: [
+                            {
+                                current: '[Circular]',
+                                onClick: () => handleNavigate('/Monsters'),
+                                text: 'WelcomeToMonsters'
+                            },
+                            {
+                                onClick: () => handleNavigate('/Monsters/allMonsters'),
+                                text: 'MonstersDetailPage'
+                            }
+                        ],
+                        text: 'Monsters'
+                    }
+                ]}
+                title={{
+                    onClick: () => handleNavigate('/'),
+                    text: 'Home App'
+                }}
+            />
+            <div className="min-h-screen flex flex-col bg-amber-400">
+                {dragons.map((dragon, index) => (
+                    <Card key={index} depth="raised" className="m-4 p-4">
+                        <h1>Dragon Details</h1>
+                        <p>Name: {dragon.name}</p>
+                        <p>Type: {dragon.type}</p>
+                        <p>Power Level: {dragon.powerLevel}</p>
+                        <img src={dragon.image} alt={dragon.name}/>
+                    </Card>
+                ))}
+
+
             </div>
-        </>
-    )
+
+            <WorkforceFooter/>
+        </div>
+    </>
+)
 }
 
 export default AllDragons
