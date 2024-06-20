@@ -1,8 +1,10 @@
 import express, {NextFunction, Request, Response} from 'express';
 import bodyParser from 'body-parser';
 // @ts-ignore
-import {monsterType} from "monsters/src/monsterType";
-import {autoFormatDataKeys, getDynamicsWebApi} from "@churchofjesuschrist/amulek-cumorah";
+import {MonsterType} from "monsters/src/monsterType";
+import {autoFormatDataKeys, autoReformatDataKeys, getDynamicsWebApi} from "@churchofjesuschrist/amulek-cumorah";
+import {v4 as uuidv4} from "uuid";
+
 
 
 
@@ -11,6 +13,9 @@ const dynamicsWebApi = getDynamicsWebApi('misamulek-dev');
 
 const monstersController = express();
 monstersController.use(bodyParser.json());
+
+const collection =  'new_monsters';
+
 
 monstersController.get('/api/:monsterID',(req: Request, res: Response, next: NextFunction) => {
     let monster; // const monster: monsterType = res??
@@ -40,11 +45,26 @@ monstersController.get('/all',async (req: Request, res: Response, next: NextFunc
     }
 });
 
-monstersController.post('/api/post/:monster',(req: Request, res: Response, next: NextFunction) => {
-    console.log(req.params);
-    return res.sendStatus(200);
 
-});
+monstersController.post('/api/post',
+    async (req: any, res) => {
+        const monsterId = req.body?.monsterId || uuidv4();
+        const monster: MonsterType = {
+            ...req.body,
+            monsterId
+        };
+
+        console.log('in post', monster);
+
+        await dynamicsWebApi.upsert({
+            key: `new_monster_id='${monsterId}'`,
+            collection,
+            data: autoReformatDataKeys(monster, 'new')
+        });
+
+        res.send({monsterId});
+    });
+
 
 monstersController.delete('/api/delete/:monster',(req: Request, res: Response, next: NextFunction) => {
     console.log(req.params);
