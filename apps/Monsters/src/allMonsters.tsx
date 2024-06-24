@@ -6,16 +6,21 @@ import Card from "@churchofjesuschrist/eden-card";
 import {MonsterType} from "./monsterType.tsx";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { To, useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import { Primary } from "@churchofjesuschrist/eden-buttons";
+
 
 
 function AllMonsters() {
 
     const navigate = useNavigate();
 
-    const handleNavigate = (path: To) => {
+    const handleNavigate = (path) => {
         navigate(path);
     }
+
+    const path = window.location.pathname;
+
     const [monsters, setMonsters] = useState<MonsterType[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -47,7 +52,7 @@ function AllMonsters() {
         return <p>{error}</p>;
     }
 
-    console.log('poop');
+
     console.log(monsters); // Safely access
     return (
         <>
@@ -97,7 +102,10 @@ function AllMonsters() {
                             <p>Power Level: {monster.powerLevel}</p>
                             <p>Evil Level: {monster.evilLevel}</p>
                             <p>haveIHadANightmareAboutThisMonster: {monster.haveIEverHadANightmareAboutThisMonster ? 'Yes' : 'No'}</p>
-                            {/*<img src={monster.image} alt={monster.name} />*/}
+                            <img src={monster.image} alt={monster.name} />
+                            <Link to={`${path}/editMonster`} state={monster}>
+                                <Primary>View/Edit Monster</Primary>
+                            </Link>
                         </Card>
                     ))}
                 </div>

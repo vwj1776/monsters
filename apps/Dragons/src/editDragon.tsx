@@ -1,25 +1,29 @@
-import { useState, useRef } from 'react'
 import './App.css'
 import './index.css'
 import SubNavigation from "@churchofjesuschrist/eden-sub-navigation";
 import WorkforceFooter from "@churchofjesuschrist/eden-workforce-footer";
 import Card from "@churchofjesuschrist/eden-card";
-import { DragonType } from "./dragonType.tsx";
+import {DragonType} from "./dragonType.tsx";
 import { Primary, Secondary } from "@churchofjesuschrist/eden-buttons";
-import { useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate} from "react-router-dom";
+import axios from "axios";
+import React, {useEffect, useRef, useState} from "react";
 import ToolModal from "@churchofjesuschrist/eden-tool-modal";
 import { Form, FormField, Input } from "@churchofjesuschrist/eden-form-parts";
 import Row from "@churchofjesuschrist/eden-row";
 import { Stack } from "@churchofjesuschrist/eden-tile-parts";
-import axios from "axios";
-function WelcomeToDragons() {
-
+function EditDragon() {
     const navigate = useNavigate();
+    const [currentDragon, setDragon] = useState<DragonType>(useLocation().state);
 
     const handleNavigate = (path) => {
         navigate(path);
     }
 
+    const path = window.location.pathname;
+
+
+    console.log('testing current dragon', currentDragon);
     const [open, setOpen] = useState(false); // Initialize state for the modal
     const refReference = useRef(null); // Initialize ref for the form
     const [error, setError] = useState<string | null>(null);
@@ -30,9 +34,6 @@ function WelcomeToDragons() {
         setOpen(false); // Close the modal
     };
 
-
-
-
     function handleAddDragon(e: any) {
         e.preventDefault();
 
@@ -42,9 +43,12 @@ function WelcomeToDragons() {
             name: formData.get('name') as string,
             type: formData.get('type') as string,
             powerLevel: formData.get('powerLevel') as number,
-            image: formData.get('image') as string
+            image: formData.get('image') as string,
+            dragonId: currentDragon.dragonId
         };
-
+        // if (eventId) {
+        //     data.eventId = eventId;
+        // }
 
         upsertDragon(dragon);
         closeModal();
@@ -71,6 +75,10 @@ function WelcomeToDragons() {
 
 
 
+
+    if (error) {
+        return <p>{error}</p>;
+    }
 
     return (
         <>
@@ -112,19 +120,25 @@ function WelcomeToDragons() {
                     }}
                 />
                 <div className="min-h-screen flex flex-col bg-amber-400">
-                    <p className="text-3xl font-bold underline">Welcome To Dragons</p>
+                    <Card depth="raised" className="m-4 p-4">
+                        <h1>Dragon Details</h1>
+                        <p>Name: {currentDragon.name}</p>
+                        <p>Type: {currentDragon.type}</p>
+                        <p>Power Level: {currentDragon.powerLevel}</p>
+                        <img src={currentDragon.image} alt={currentDragon.name}/>
+                    </Card>
                 </div>
-                <WorkforceFooter />
+
+                <WorkforceFooter/>
             </div>
 
-            {/**/}
             <Primary onClick={openModal}>
-                Click to Add Dragon
+                Click to Edit Dragon
             </Primary>
             <ToolModal open={open}
-                footer={<Row><Primary form=":r0:" type="submit">Submit</Primary><Secondary onClick={function(){refReference.current.reset(),setOpen(!1)}}>Cancel</Secondary></Row>}
-                header="New Dragon"
-                onClose={closeModal}
+                       footer={<Row><Primary form=":r0:" type="submit">Submit</Primary><Secondary onClick={function(){refReference.current.reset(),setOpen(!1)}}>Cancel</Secondary></Row>}
+                       header="Edit Dragon"
+                       onClose={closeModal}
             >
                 <Form
                     ref={refReference}
@@ -138,23 +152,27 @@ function WelcomeToDragons() {
                                 autofocus="true"
                                 name="name"
                                 required
+                                defaultValue={currentDragon?.name}
                             />
                         </FormField>
                         <FormField label="Type">
                             <Input
                                 name="type"
                                 required
+                                defaultValue={currentDragon?.type}
                             />
                         </FormField>
                         <FormField label="Power Level">
                             <Input
                                 name="powerLevel"
                                 required
+                                defaultValue={currentDragon?.powerLevel}
                             />
                         </FormField>
                         <FormField label="Image">
                             <Input
                                 name="Image"
+                                defaultValue={currentDragon?.image}
                             />
                         </FormField>
                     </Stack>
@@ -164,4 +182,4 @@ function WelcomeToDragons() {
     )
 }
 
-export default WelcomeToDragons
+export default EditDragon

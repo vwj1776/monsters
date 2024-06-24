@@ -9,6 +9,8 @@ import { lazy } from "react";
 
 
 const AllDragonPage = lazy(() => import('./allDragons'));
+const EditDragonPage = lazy(() => import('./editDragon'));
+
 // Create your main component
 export default function DragonAutoban () {
     return (
@@ -16,6 +18,7 @@ export default function DragonAutoban () {
                 {/* Routes */}
                 <Route path="/" Component={WelcomeToDragons} />
                 <Route path="/allDragons/*" element={ < AllDragonPage /> } />
+                <Route path="/allDragons/editDragon/*" element={ < EditDragonPage /> } />
             </Routes>
     )
 }

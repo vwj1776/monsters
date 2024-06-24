@@ -4,11 +4,10 @@ import SubNavigation from "@churchofjesuschrist/eden-sub-navigation";
 import WorkforceFooter from "@churchofjesuschrist/eden-workforce-footer";
 import Card from "@churchofjesuschrist/eden-card";
 import {DragonType} from "./dragonType.tsx";
-import { ArrowBack } from "@churchofjesuschrist/eden-icons";
 import { Primary } from "@churchofjesuschrist/eden-buttons";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React,  {useEffect, useState} from "react";
 
 function AllDragons() {
     const navigate = useNavigate();
@@ -16,6 +15,8 @@ function AllDragons() {
     const handleNavigate = (path) => {
         navigate(path);
     }
+
+    const path = window.location.pathname;
 
     const [dragons, setDragons] = useState<DragonType[]>([]);
     const [loading, setLoading] = useState(true);
@@ -94,6 +95,11 @@ return (
                         <p>Type: {dragon.type}</p>
                         <p>Power Level: {dragon.powerLevel}</p>
                         <img src={dragon.image} alt={dragon.name}/>
+
+                        <Link to={`${path}/editDragon`} state={dragon}>
+                            <Primary>View/Edit Drgaon</Primary>
+                        </Link>
+
                     </Card>
                 ))}
 
