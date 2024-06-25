@@ -4,4 +4,5 @@ export interface DragonType {
     type: string;
     powerLevel: number;
     image: string;
+    dragonId: string;
 }

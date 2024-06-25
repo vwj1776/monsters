@@ -41,7 +41,9 @@ function WelcomeToMonsters() {
         const monster: MonsterType = {
             name: formData.get('name') as string,
             type: formData.get('type') as string,
-            powerLevel: formData.get('powerLevel') as number,
+            powerLevel: +formData.get('powerLevel'),
+            evilLevel: +formData.get('evilLevel'),
+            haveIEverHadANightmareAboutThisMonster: !!formData.get('haveIEverHadANightmareAboutThisMonster'),
             image: formData.get('image') as string
         };
         // if (eventId) {
@@ -152,9 +154,15 @@ function WelcomeToMonsters() {
                               required
                           />
                       </FormField>
-                      <FormField label="have_I_ever_had_a_nightmare_about_this_monster">
+                      <FormField label="Evil Level">
                           <Input
-                              name="have_I_ever_had_a_nightmare_about_this_monster"
+                              name="evilLevel"
+                              required
+                          />
+                      </FormField>
+                      <FormField label="haveIEverHadANightmareAboutThisMonster">
+                          <Input
+                              name="haveIEverHadANightmareAboutThisMonster"
                               required
                           />
                       </FormField>

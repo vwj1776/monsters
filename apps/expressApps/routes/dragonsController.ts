@@ -17,7 +17,7 @@ const collection =  'new_dragons';
 
 dragonsController.get('/api/:dragonID',(req: Request, res: Response, next: NextFunction) => {
     let dragon; // const dragon: DragonType = res??
-    //console.log(req.params);
+
     res.send(dragon)
 });
 
@@ -28,13 +28,12 @@ dragonsController.get('/all',async (req: Request, res: Response, next: NextFunct
         const response = await dynamicsWebApi.retrieve({
             collection: 'new_dragons'
         });
-       // console.log("after await");
-       // console.log(response);
+
 
         const dragons = response.value;
        // console.log(dragons);
         const formattedDragons = autoFormatDataKeys(dragons, 'new');
-       console.log("formatted dragons", formattedDragons);
+      //  console.log("formatted dragons", formattedDragons);
         res.send(formattedDragons);
     } catch (error) {
         console.error('Error retrieving dragons:', error);
@@ -52,13 +51,15 @@ dragonsController.get('/all',async (req: Request, res: Response, next: NextFunct
 
 dragonsController.post('/api/post',
     async (req: any, res) => {
+
         const dragonId = req.body?.dragonId || uuidv4();
+        console.log('in post', req.body);
+
         const dragon: DragonType = {
             ...req.body,
             dragonId
         };
 
-        console.log('in post', dragon);
 
         await dynamicsWebApi.upsert({
             key: `new_dragon_id='${dragonId}'`,
