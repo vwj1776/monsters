@@ -70,9 +70,21 @@ dragonsController.post('/api/post',
         res.send({dragonId});
     });
 
-dragonsController.delete('/api/delete/:dragon',(req: Request, res: Response, next: NextFunction) => {
-    //console.log(req.params);
-    return res.sendStatus(200);
+dragonsController.delete('/api/delete/:dragonId',async (req: Request, res: Response, next: NextFunction) => {
+    const { dragonId } = req.params; // Extract dragonId from request parameters
+    // console.log('----------------------------------------------------', dragonId);
+    try {
+        const response = await dynamicsWebApi.deleteRecord({
+            collection: 'new_dragons',
+            key: `new_dragon_id='${dragonId}'` // Use the extracted dragonId as the key for the query
+        });
+
+        // console.log('dragon deleted:', response);
+        res.send({ message: 'dragon deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting dragon:', error);
+        res.status(500).send({ error: 'Error deleting dragon' });
+    }
 });
 
 async function throwsError(){
