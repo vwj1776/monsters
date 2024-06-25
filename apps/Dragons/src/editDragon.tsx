@@ -73,7 +73,22 @@ function EditDragon() {
 
 
 
+    async function deleteDragon(dragonId: string) {
+        console.log('top of delete');
+        try {
+            await axios({
+                method: 'delete',
+                url:  `/dragons/api/delete/${dragonId}`,
+                baseURL: 'http://localhost:3000',
+            }).catch((e) => console.log(e))
 
+
+            console.log(`dragon with ID ${dragonId} deleted successfully`);
+        } catch (err) {
+            setError('Error deleting dragon you dumb dumb');
+
+        }
+    }
 
 
     if (error) {
@@ -134,6 +149,9 @@ function EditDragon() {
 
             <Primary onClick={openModal}>
                 Click to Edit Dragon
+            </Primary>
+            <Primary onClick={() => deleteDragon(currentDragon.dragonId)}>
+                Click to delete
             </Primary>
             <ToolModal open={open}
                        footer={<Row><Primary form=":r0:" type="submit">Submit</Primary><Secondary onClick={function(){refReference.current.reset(),setOpen(!1)}}>Cancel</Secondary></Row>}

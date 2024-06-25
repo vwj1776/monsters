@@ -48,9 +48,7 @@ function EditMonster() {
             image: formData.get('image') as string,
             monsterId: currentMonster.monsterId
         };
-        // if (eventId) {
-        //     data.eventId = eventId;
-        // }
+
 
         upsertMonster(monster);
         closeModal();
@@ -76,7 +74,22 @@ function EditMonster() {
 
 
 
+    async function deleteMonster(monsterId: string) {
+        console.log('top of delete');
+        try {
+            await axios({
+                method: 'delete',
+                url:  `/monsters/api/delete/${monsterId}`,
+                baseURL: 'http://localhost:3000',
+            }).catch((e) => console.log(e))
 
+
+            console.log(`Monster with ID ${monsterId} deleted successfully`);
+        } catch (err) {
+            setError('Error deleting monster you dumb dumb');
+
+        }
+    }
 
     if (error) {
         return <p>{error}</p>;
@@ -136,6 +149,9 @@ function EditMonster() {
 
             <Primary onClick={openModal}>
                 Click to Edit Monster
+            </Primary>
+            <Primary onClick={() => deleteMonster(currentMonster.monsterId)}>
+                Click to delete
             </Primary>
             <ToolModal open={open}
                        footer={<Row><Primary form=":r0:" type="submit">Submit</Primary><Secondary onClick={function(){refReference.current.reset(),setOpen(!1)}}>Cancel</Secondary></Row>}
