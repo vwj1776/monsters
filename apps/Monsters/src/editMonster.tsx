@@ -101,6 +101,16 @@ function EditMonster() {
                             items: [
                                 {
                                     current: '[Circular]',
+                                    onClick: () => handleNavigate('/tamer/allTamers'),
+                                    text: 'Tamers'
+                                }
+                            ],
+                            text: 'Tamers'
+                        },
+                        {
+                            items: [
+                                {
+                                    current: '[Circular]',
                                     onClick: () => handleNavigate('/Dragons'),
                                     text: 'WelcomeToDragons'
                                 },
