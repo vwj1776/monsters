@@ -12,7 +12,7 @@ import ToolModal from "@churchofjesuschrist/eden-tool-modal";
 import { Form, FormField, Input } from "@churchofjesuschrist/eden-form-parts";
 import Row from "@churchofjesuschrist/eden-row";
 import { Stack } from "@churchofjesuschrist/eden-tile-parts";
-function EditMonster() {
+function EditTamer() {
     const navigate = useNavigate();
     const [currentMonster, setMonster] = useState<MonsterType>(useLocation().state);
 
@@ -97,16 +97,6 @@ function EditMonster() {
             <div>
                 <SubNavigation
                     items={[
-                        {
-                            items: [
-                                {
-                                    current: '[Circular]',
-                                    onClick: () => handleNavigate('/tamer/allTamers'),
-                                    text: 'Tamers'
-                                }
-                            ],
-                            text: 'Tamers'
-                        },
                         {
                             items: [
                                 {
@@ -221,4 +211,4 @@ function EditMonster() {
     )
 }
 
-export default EditMonster
+export default EditTamer

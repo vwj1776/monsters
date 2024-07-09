@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dragonsController from "./routes/dragonsController";
 import monstersController from "./routes/monstersController";
+import tamersController from "./routes/tamersController";
+
 import helmet from 'helmet';
 // import { DynamicsWebApi } from "dynamics-web-api";
 // import { getDynamicsWebApi
@@ -20,6 +22,7 @@ app.use(helmet());
 
 app.use('/dragons', dragonsController);
 app.use('/monsters', monstersController);
+app.use('/tamers', tamersController);
 
 
 app.listen(port, () => {

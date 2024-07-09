@@ -19,6 +19,16 @@ function WelcomeToHome() {
                     {
                         items: [
                             {
+                                current: '[Circular]',
+                                onClick: () => handleNavigate('/tamer/allTamers'),
+                                text: 'Tamers'
+                            }
+                        ],
+                        text: 'Tamers'
+                    },
+                    {
+                        items: [
+                            {
                                 current: location.pathname ==='/Dragons',
                                 onClick: () => handleNavigate('/Dragons'),
                                 text: 'WelcomeToDragons'

@@ -23,7 +23,6 @@ function EditDragon() {
     const path = window.location.pathname;
 
 
-    console.log('testing current dragon', currentDragon);
     const [open, setOpen] = useState(false); // Initialize state for the modal
     const refReference = useRef(null); // Initialize ref for the form
     const [error, setError] = useState<string | null>(null);
@@ -73,7 +72,21 @@ function EditDragon() {
 
 
 
+    async function deleteDragon(dragonId: string) {
 
+        try {
+            await axios({
+                method: 'delete',
+                url:  `/dragons/api/delete/${dragonId}`,
+                baseURL: 'http://localhost:3000',
+            }).catch((e) => console.log(e))
+
+
+        } catch (err) {
+            setError('Error deleting dragon you dumb dumb');
+
+        }
+    }
 
 
     if (error) {
@@ -85,6 +98,16 @@ function EditDragon() {
             <div>
                 <SubNavigation
                     items={[
+                        {
+                            items: [
+                                {
+                                    current: '[Circular]',
+                                    onClick: () => handleNavigate('/tamer/allTamers'),
+                                    text: 'Tamers'
+                                }
+                            ],
+                            text: 'Tamers'
+                        },
                         {
                             items: [
                                 {
@@ -134,6 +157,9 @@ function EditDragon() {
 
             <Primary onClick={openModal}>
                 Click to Edit Dragon
+            </Primary>
+            <Primary onClick={() => deleteDragon(currentDragon.dragonId)}>
+                Click to delete
             </Primary>
             <ToolModal open={open}
                        footer={<Row><Primary form=":r0:" type="submit">Submit</Primary><Secondary onClick={function(){refReference.current.reset(),setOpen(!1)}}>Cancel</Secondary></Row>}

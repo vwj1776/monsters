@@ -71,10 +71,22 @@ function WelcomeToMonsters() {
         }
     }
 
+
+
   return (
       <>
           <SubNavigation
               items={[
+                  {
+                      items: [
+                          {
+                              current: '[Circular]',
+                              onClick: () => handleNavigate('/tamer/allTamers'),
+                              text: 'Tamers'
+                          }
+                      ],
+                      text: 'Tamers'
+                  },
                   {
                       items: [
                           {
