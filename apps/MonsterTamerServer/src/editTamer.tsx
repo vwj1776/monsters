@@ -3,7 +3,7 @@ import './index.css'
 import SubNavigation from "@churchofjesuschrist/eden-sub-navigation";
 import WorkforceFooter from "@churchofjesuschrist/eden-workforce-footer";
 import Card from "@churchofjesuschrist/eden-card";
-import {DragonType} from "./dragonType.tsx";
+import {MonsterType} from "./monsterType.tsx";
 import { Primary, Secondary } from "@churchofjesuschrist/eden-buttons";
 import {useLocation, useNavigate} from "react-router-dom";
 import axios from "axios";
@@ -12,9 +12,9 @@ import ToolModal from "@churchofjesuschrist/eden-tool-modal";
 import { Form, FormField, Input } from "@churchofjesuschrist/eden-form-parts";
 import Row from "@churchofjesuschrist/eden-row";
 import { Stack } from "@churchofjesuschrist/eden-tile-parts";
-function EditDragon() {
+function EditTamer() {
     const navigate = useNavigate();
-    const [currentDragon, setDragon] = useState<DragonType>(useLocation().state);
+    const [currentMonster, setMonster] = useState<MonsterType>(useLocation().state);
 
     const handleNavigate = (path) => {
         navigate(path);
@@ -33,61 +33,60 @@ function EditDragon() {
         setOpen(false); // Close the modal
     };
 
-    function handleAddDragon(e: any) {
+    function handleAddMonster(e: any) {
         e.preventDefault();
 
 
         const formData = new FormData(e.target);
-        const dragon: DragonType = {
+        const monster: MonsterType = {
             name: formData.get('name') as string,
             type: formData.get('type') as string,
-            powerLevel: formData.get('powerLevel') as number,
+            powerLevel: +formData.get('powerLevel'),
+            evilLevel: +formData.get('evilLevel'),
+            haveIEverHadANightmareAboutThisMonster: !!formData.get('haveIEverHadANightmareAboutThisMonster'),
             image: formData.get('image') as string,
-            dragonId: currentDragon.dragonId
+            monsterId: currentMonster.monsterId
         };
-        // if (eventId) {
-        //     data.eventId = eventId;
-        // }
 
-        upsertDragon(dragon);
+
+        upsertMonster(monster);
         closeModal();
     }
 
-    async function upsertDragon(dragon: DragonType) {
+    async function upsertMonster(monster: MonsterType) {
         try {
             await axios({
                 method: 'post',
-                url: '/dragons/api/post',
+                url: '/monsters/api/post',
                 baseURL: 'http://localhost:3000',
-                data: dragon
+                data: monster
             }).catch((e) => console.log(e))
 
 
 
         } catch (err) {
-            setError('Error adding dragons you dumb dumb');
+            setError('Error adding Monsters you dumb dumb');
 
         }
     }
 
 
 
-    async function deleteDragon(dragonId: string) {
 
+    async function deleteMonster(monsterId: string) {
         try {
             await axios({
                 method: 'delete',
-                url:  `/dragons/api/delete/${dragonId}`,
+                url:  `/monsters/api/delete/${monsterId}`,
                 baseURL: 'http://localhost:3000',
             }).catch((e) => console.log(e))
 
 
         } catch (err) {
-            setError('Error deleting dragon you dumb dumb');
+            setError('Error deleting monster you dumb dumb');
 
         }
     }
-
 
     if (error) {
         return <p>{error}</p>;
@@ -134,11 +133,11 @@ function EditDragon() {
                 />
                 <div className="min-h-screen flex flex-col bg-amber-400">
                     <Card depth="raised" className="m-4 p-4">
-                        <h1>Dragon Details</h1>
-                        <p>Name: {currentDragon.name}</p>
-                        <p>Type: {currentDragon.type}</p>
-                        <p>Power Level: {currentDragon.powerLevel}</p>
-                        <img src={currentDragon.image} alt={currentDragon.name}/>
+                        <h1>Monster Details</h1>
+                        <p>Name: {currentMonster.name}</p>
+                        <p>Type: {currentMonster.type}</p>
+                        <p>Power Level: {currentMonster.powerLevel}</p>
+                        <img src={currentMonster.image} alt={currentMonster.name}/>
                     </Card>
                 </div>
 
@@ -146,21 +145,21 @@ function EditDragon() {
             </div>
 
             <Primary onClick={openModal}>
-                Click to Edit Dragon
+                Click to Edit Monster
             </Primary>
-            <Primary onClick={() => deleteDragon(currentDragon.dragonId)}>
+            <Primary onClick={() => deleteMonster(currentMonster.monsterId)}>
                 Click to delete
             </Primary>
             <ToolModal open={open}
                        footer={<Row><Primary form=":r0:" type="submit">Submit</Primary><Secondary onClick={function(){refReference.current.reset(),setOpen(!1)}}>Cancel</Secondary></Row>}
-                       header="Edit Dragon"
+                       header="Edit Monster"
                        onClose={closeModal}
             >
                 <Form
                     ref={refReference}
                     id=":r0:"
                     method="dialog"
-                    onSubmit={(e: any) => handleAddDragon(e)}
+                    onSubmit={(e: any) => handleAddMonster(e)}
                 >
                     <Stack>
                         <FormField label="Name">
@@ -168,27 +167,41 @@ function EditDragon() {
                                 autofocus="true"
                                 name="name"
                                 required
-                                defaultValue={currentDragon?.name}
+                                defaultValue={currentMonster?.name}
                             />
                         </FormField>
                         <FormField label="Type">
                             <Input
                                 name="type"
                                 required
-                                defaultValue={currentDragon?.type}
+                                defaultValue={currentMonster?.type}
                             />
                         </FormField>
                         <FormField label="Power Level">
                             <Input
                                 name="powerLevel"
                                 required
-                                defaultValue={currentDragon?.powerLevel}
+                                defaultValue={currentMonster?.powerLevel}
+                            />
+                        </FormField>
+                        <FormField label="Evil Lavel">
+                            <Input
+                                name="evilLevel"
+                                required
+                                defaultValue={currentMonster?.evilLevel}
+                            />
+                        </FormField>
+                        <FormField label="haveIEverHadANightmareAboutThisMonster">
+                            <Input
+                                name="haveIEverHadANightmareAboutThisMonster"
+                                required
+                                defaultValue={currentMonster?.haveIEverHadANightmareAboutThisMonster}
                             />
                         </FormField>
                         <FormField label="Image">
                             <Input
                                 name="Image"
-                                defaultValue={currentDragon?.image}
+                                defaultValue={currentMonster?.image}
                             />
                         </FormField>
                     </Stack>
@@ -198,4 +211,4 @@ function EditDragon() {
     )
 }
 
-export default EditDragon
+export default EditTamer

@@ -2,3 +2,9 @@
 2. remotes:   "live:remotes": "dotenv -- turbo live --filter=./apps/* --filter=!host --concurrency=100",
 3. servers :  "dev:servers":dotenv -- turbo dev --filter=./app
               s/*-server  --concurrency=100%",
+
+
+
+yarn create vite Monsters --template react-ts
+
+https://make.powerapps.com/e/79f82a5d-336a-ef28-a491-82cd2d59e510/s/8710f617-111a-ef11-9f89-6045bdf06166/entity/new_dragon/view/7e0e60af-733d-ef11-8409-6045bdf079a5

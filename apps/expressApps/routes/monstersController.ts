@@ -13,7 +13,6 @@ import {v4 as uuidv4} from "uuid";
 
 
 
-console.log('Power app client id', process.env.POWER_APP_CLIENT_ID);
 const dynamicsWebApi = getDynamicsWebApi('misamulek-dev');
 
 const monstersController = express();

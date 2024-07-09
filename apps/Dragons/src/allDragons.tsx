@@ -25,9 +25,7 @@ function AllDragons() {
     const fetchDragons = async () => {
         try {
             const response = await axios.get('http://localhost:3000/dragons/all');
-            console.log('response', response);
 
-            console.log('response.data', response.data );
             setDragons(response.data);
             setLoading(false);
 

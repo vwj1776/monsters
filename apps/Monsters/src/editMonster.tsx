@@ -23,7 +23,6 @@ function EditMonster() {
     const path = window.location.pathname;
 
 
-    console.log('testing current Monster', currentMonster);
     const [open, setOpen] = useState(false); // Initialize state for the modal
     const refReference = useRef(null); // Initialize ref for the form
     const [error, setError] = useState<string | null>(null);
@@ -75,7 +74,6 @@ function EditMonster() {
 
 
     async function deleteMonster(monsterId: string) {
-        console.log('top of delete');
         try {
             await axios({
                 method: 'delete',
@@ -84,7 +82,6 @@ function EditMonster() {
             }).catch((e) => console.log(e))
 
 
-            console.log(`Monster with ID ${monsterId} deleted successfully`);
         } catch (err) {
             setError('Error deleting monster you dumb dumb');
 

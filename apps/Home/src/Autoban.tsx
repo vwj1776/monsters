@@ -9,6 +9,8 @@ import ModuleFederationWrapper from "../../ModuleFederationWrapper.tsx";
 
 const WelcomeToDragons = lazy(() => import('dragon_app/DragonAutoban'));
 const WelcomeToMonsters = lazy(() => import('monster_app/MonsterAutoban'));
+const WelcomeToTamers = lazy(() => import('tamer_app/TamerAutoban'));
+
 // Create your main component
 export default function Autoban () {
     return (
@@ -21,6 +23,9 @@ export default function Autoban () {
                 </ModuleFederationWrapper>} />
                 <Route path="/Monsters/*" element={<ModuleFederationWrapper onError={<div>Failed to load Monster Routes</div>}>
                     <WelcomeToMonsters />
+                </ModuleFederationWrapper>} />
+                <Route path="/Tamer/*" element={<ModuleFederationWrapper onError={<div>Failed to load tamer Routes</div>}>
+                    <WelcomeToTamers />
                 </ModuleFederationWrapper>} />
             </Routes>
         </BrowserRouter>

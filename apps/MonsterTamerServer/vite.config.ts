@@ -7,15 +7,15 @@ import federation from "@originjs/vite-plugin-federation";
 export default defineConfig({
   plugins: [
     federation({
-      name: 'host-app',
-      remotes: {
-        dragon_app: "http://localhost:3110/assets/remoteEntry.js",
-        monster_app: "http://localhost:3120/assets/remoteEntry.js",
-        tamer_app:"http://localhost:3130/assets/remoteEntry.js",
+      name: 'tamer-app',
+      filename: 'remoteEntry.js',
+      // Modules to expose
+      exposes: {
+        './TamerAutoban': './src/TamerAutoban',
       },
       shared: ['react', 'react-dom', 'react-router-dom']
     }),
-      react()
+    react()
   ],
   build: {
     modulePreload: false,

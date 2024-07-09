@@ -53,7 +53,6 @@ dragonsController.post('/api/post',
     async (req: any, res) => {
 
         const dragonId = req.body?.dragonId || uuidv4();
-        console.log('in post', req.body);
 
         const dragon: DragonType = {
             ...req.body,
